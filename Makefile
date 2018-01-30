@@ -18,7 +18,7 @@ upload:   $(UPLOADS)
 	mv $@ $<
 
 %.conf_upload: %.conf
-	alpenhorn-guardian-upload-config -config $<
+	-alpenhorn-guardian-upload-config -config $<
 
 clean:
 	rm -f $(CONFS)
