@@ -1,13 +1,20 @@
-CONFIGS := AddFriend Convo Dialing
+SERVICES := AddFriend Convo Dialing
 
-all:
+CONFS	 := $(patsubst %,%.conf,$(SERVICES))
+SIGNS	 := $(patsubst %,%.conf_sign,$(SERVICES))
 
-download: $(patsubst %,%.conf,$(CONFIGS))
+all: download
 
-%.conf: _PHONY
+download: $(CONFS)
+
+sign: $(SIGNS)
+
+%.conf:
 	alpenhorn-guardian-new-config -service $(patsubst %.conf,%,$@) > $@
 
-clean:
-	rm -f $(patsubst %,%.conf,$(CONFIGS))
+%.conf_sign: %.conf
+	alpenhorn-guardian-sign-config -config $< > $@
+	mv $@ $<
 
-.PHONY: _PHONY
+clean:
+	rm -f $(CONFS)
