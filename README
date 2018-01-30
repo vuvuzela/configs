@@ -1,0 +1,12 @@
+To initiate a config change:
+
+  make clean
+  make
+
+To sign with your key:
+
+  make sign
+
+To upload once all the signatures are in place:
+
+  make upload
